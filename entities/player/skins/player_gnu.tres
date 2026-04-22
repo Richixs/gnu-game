@@ -56,5 +56,6 @@ animations = [{
 
 [resource]
 script = ExtResource("1_rs623")
+skin_name = "gnu"
 animations = SubResource("SpriteFrames_nbxoj")
 metadata/_custom_type_script = "uid://caboj86bfjqp7"
