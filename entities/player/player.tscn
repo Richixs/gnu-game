@@ -13,5 +13,3 @@ skin = ExtResource("2_abrql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297849045]
 shape = SubResource("RectangleShape2D_sfv1e")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=664661687]
