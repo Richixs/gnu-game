@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cp2dkdyv3g3a1" path="res://entities/player/player.tscn" id="1_ng6r8"]
 [ext_resource type="Script" uid="uid://dc0sgpsxhqx42" path="res://levels/world/scripts/track/scrolling_background.gd" id="2_6rhwe"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ng6r8"]
-load_path = "res://.godot/imported/track.png-8b49d158c15dd354374335af9dfaf4aa.ctex"
+[ext_resource type="Texture2D" uid="uid://3io7eb8155b5" path="res://levels/world/sprites/background/city_half.png" id="2_b8p08"]
+[ext_resource type="Texture2D" uid="uid://ciyutln0c3ldb" path="res://levels/world/sprites/background/city_far.png" id="2_h0il2"]
+[ext_resource type="Texture2D" uid="uid://brw5gnpr3mrxu" path="res://levels/world/sprites/background/background.png" id="2_le7ry"]
+[ext_resource type="Texture2D" uid="uid://du3kg6fc6sd2l" path="res://levels/world/sprites/background/city_near.png" id="3_8gvdk"]
+[ext_resource type="Texture2D" uid="uid://c7mpu7f3u2iwh" path="res://levels/world/sprites/track/track.png" id="6_cjrbv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsgde"]
 size = Vector2(320, 13)
@@ -13,13 +15,46 @@ size = Vector2(320, 13)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2092632211]
 script = ExtResource("2_6rhwe")
+scroll_speed = 200.0
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=517894402]
+[node name="SanPedro" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1000023405]
+motion_scale = Vector2(0.05, 0.05)
+motion_mirroring = Vector2(600, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SanPedro" unique_id=426416809]
+position = Vector2(300, 90)
+texture = ExtResource("2_le7ry")
+
+[node name="CityFar" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1443059567]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(680, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CityFar" unique_id=1309177091]
+position = Vector2(341, 90)
+texture = ExtResource("2_h0il2")
+
+[node name="CityHalf" type="ParallaxLayer" parent="ParallaxBackground" unique_id=223426152]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(680, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CityHalf" unique_id=1285175772]
+position = Vector2(340, 89)
+texture = ExtResource("2_b8p08")
+
+[node name="CityNear" type="ParallaxLayer" parent="ParallaxBackground" unique_id=806988047]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(610, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/CityNear" unique_id=895703299]
+position = Vector2(306, 91)
+texture = ExtResource("3_8gvdk")
+
+[node name="Track" type="ParallaxLayer" parent="ParallaxBackground" unique_id=517894402]
 motion_mirroring = Vector2(1400, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer" unique_id=1489753750]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Track" unique_id=1489753750]
 position = Vector2(700, 167)
-texture = SubResource("CompressedTexture2D_ng6r8")
+texture = ExtResource("6_cjrbv")
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=461535637]
 
@@ -31,7 +66,7 @@ shape = SubResource("RectangleShape2D_tsgde")
 offset_top = 174.0
 offset_right = 320.0
 offset_bottom = 180.0
-color = Color(0.3019608, 0.3019608, 0.3019608, 1)
+color = Color(0.2901961, 0.2901961, 0.2901961, 1)
 
 [node name="Player" parent="." unique_id=1303364449 instance=ExtResource("1_ng6r8")]
 position = Vector2(48, 152)
