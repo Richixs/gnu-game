@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://baiqxij7icjlu"]
 
 [ext_resource type="PackedScene" uid="uid://cp2dkdyv3g3a1" path="res://entities/player/player.tscn" id="1_ng6r8"]
+[ext_resource type="Shader" uid="uid://x0quhk0hc2vk" path="res://levels/world/rim_light.gdshader" id="2_6qp4l"]
 [ext_resource type="Script" uid="uid://dc0sgpsxhqx42" path="res://levels/world/scripts/track/scrolling_background.gd" id="2_6rhwe"]
 [ext_resource type="Texture2D" uid="uid://3io7eb8155b5" path="res://levels/world/sprites/background/city_half.png" id="2_b8p08"]
 [ext_resource type="Texture2D" uid="uid://ciyutln0c3ldb" path="res://levels/world/sprites/background/city_far.png" id="2_h0il2"]
 [ext_resource type="Texture2D" uid="uid://brw5gnpr3mrxu" path="res://levels/world/sprites/background/background.png" id="2_le7ry"]
 [ext_resource type="Texture2D" uid="uid://du3kg6fc6sd2l" path="res://levels/world/sprites/background/city_near.png" id="3_8gvdk"]
 [ext_resource type="Texture2D" uid="uid://c7mpu7f3u2iwh" path="res://levels/world/sprites/track/track.png" id="6_cjrbv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cjrbv"]
+shader = ExtResource("2_6qp4l")
+shader_parameter/rim_color = Color(0.6156863, 0.5647059, 0.84313726, 1)
+shader_parameter/rim_thickness = 50.000002375
+shader_parameter/rim_falloff = 5.00000023424012
+shader_parameter/global_opacity = 0.800000038
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tsgde"]
 size = Vector2(320, 13)
@@ -17,11 +25,21 @@ size = Vector2(320, 13)
 script = ExtResource("2_6rhwe")
 scroll_speed = 200.0
 
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1693570133]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(180, 0)
+
+[node name="Background" type="ColorRect" parent="ParallaxBackground/Background" unique_id=518334078]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.30981788, 0.228199, 0.4242682, 1)
+
 [node name="SanPedro" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1000023405]
 motion_scale = Vector2(0.05, 0.05)
 motion_mirroring = Vector2(600, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SanPedro" unique_id=426416809]
+material = SubResource("ShaderMaterial_cjrbv")
 position = Vector2(300, 90)
 texture = ExtResource("2_le7ry")
 
