@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var skin: SkinData
+@export var fast_fall_multiplier: float = 4.0 
 
 @onready var sprite = $Sprite
 @onready var collision_shape = $CollisionShape2D
@@ -20,7 +21,11 @@ func _apply_skin():
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if Input.is_action_pressed("down"):
+			velocity.y += (gravity * fast_fall_multiplier) * delta
+		else:
+			velocity.y += gravity * delta
+		
 		if not is_ducking:
 			sprite.play("idle")
 
