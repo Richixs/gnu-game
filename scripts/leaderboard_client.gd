@@ -4,7 +4,7 @@ signal submit_score_succeeded(initials: String, score: int, response: Dictionary
 signal scores_loaded(scores: Array, scope: String, date_str: String, from_cache: bool)
 signal request_error(message: String, http_code: int, context: Dictionary)
 
-const DEFAULT_BASE_URL := "http://localhost:3000"
+const DEFAULT_BASE_URL := "https://api.gnu.scesi.dev"
 const SCORES_PATH := "/scores"
 const DEFAULT_TIMEOUT_SECONDS := 8.0
 const DEFAULT_MAX_RETRIES := 2
@@ -51,16 +51,16 @@ func _ready() -> void:
 	add_child(_request)
 
 func _apply_runtime_config() -> void:
+	set_base_url(DEFAULT_BASE_URL)
+	configure_development_salt(DEVELOPMENT_SECRET_SALT)
+
 	var env_base_url := OS.get_environment(ENV_BASE_URL).strip_edges()
 	if not env_base_url.is_empty():
 		set_base_url(env_base_url)
 
-	if OS.is_debug_build():
-		var env_salt := OS.get_environment(ENV_DEV_SECRET_SALT).strip_edges()
-		if not env_salt.is_empty():
-			configure_development_salt(env_salt)
-		else:
-			configure_development_salt(DEVELOPMENT_SECRET_SALT)
+	var env_salt := OS.get_environment(ENV_DEV_SECRET_SALT).strip_edges()
+	if not env_salt.is_empty():
+		configure_development_salt(env_salt)
 
 func configure_development_salt(secret_salt: String) -> void:
 	development_secret_salt = secret_salt.strip_edges()
