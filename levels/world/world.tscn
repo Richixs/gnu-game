@@ -8,6 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://brw5gnpr3mrxu" path="res://levels/world/sprites/background/background.png" id="2_le7ry"]
 [ext_resource type="Texture2D" uid="uid://du3kg6fc6sd2l" path="res://levels/world/sprites/background/city_near.png" id="3_8gvdk"]
 [ext_resource type="Texture2D" uid="uid://c7mpu7f3u2iwh" path="res://levels/world/sprites/track/track.png" id="6_cjrbv"]
+[ext_resource type="PackedScene" uid="uid://b368g0fm5puwu" path="res://entities/obstacles/obstacle-spawner.tscn" id="9_dlib7"]
+[ext_resource type="PackedScene" uid="uid://d1cnyopxifih6" path="res://entities/obstacles/dual-monitor.tscn" id="10_vvn61"]
+[ext_resource type="PackedScene" uid="uid://cn2vrnamprbuk" path="res://entities/obstacles/hacklab-project.tscn" id="11_odyyq"]
+[ext_resource type="PackedScene" uid="uid://fhmtrkyjelws" path="res://entities/obstacles/monitor.tscn" id="12_8x81d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cjrbv"]
 shader = ExtResource("2_6qp4l")
@@ -23,7 +27,6 @@ size = Vector2(320, 13)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2092632211]
 script = ExtResource("2_6rhwe")
-scroll_speed = 200.0
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1693570133]
 motion_scale = Vector2(0, 0)
@@ -91,3 +94,11 @@ position = Vector2(48, 152)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1341531380]
 anchor_mode = 0
+
+[node name="ObstacleSpawner" parent="." unique_id=1882673231 instance=ExtResource("9_dlib7")]
+position = Vector2(330, 0)
+ground_obstacles = Array[PackedScene]([ExtResource("10_vvn61"), ExtResource("11_odyyq"), ExtResource("12_8x81d")])
+min_spawn_time = 1.0
+max_spawn_time = 2.0
+ground_y = 143.0
+air_y = 100.0

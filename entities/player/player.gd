@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
 @export var skin: SkinData
+@export var fast_fall_multiplier: float = 4.0 
+
+@export var min_jump_velocity: float = -400.0
+@export var max_jump_velocity: float = -450.0
 
 @onready var sprite = $Sprite
 @onready var collision_shape = $CollisionShape2D
 
-const JUMP_VELOCITY = -400.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking: bool = false
 
@@ -20,13 +23,17 @@ func _apply_skin():
 
 func _physics_process(delta):
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		if Input.is_action_pressed("down"):
+			velocity.y += (gravity * fast_fall_multiplier) * delta
+		else:
+			velocity.y += gravity * delta
+		
 		if not is_ducking:
 			sprite.play("idle")
 
 
 	if Input.is_action_just_pressed("up") and is_on_floor() and not is_ducking:
-		velocity.y = JUMP_VELOCITY
+		velocity.y = randf_range(max_jump_velocity, min_jump_velocity)
 
 	if is_on_floor():
 		if Input.is_action_pressed("down"):
