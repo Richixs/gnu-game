@@ -36,6 +36,7 @@ func _physics_process(delta):
 
 	if Global.is_action_just_pressed(&"up") and is_on_floor() and not is_ducking:
 		velocity.y = randf_range(max_jump_velocity, min_jump_velocity)
+		AudioManager.play_jump()
 
 	if is_on_floor():
 		if Global.is_action_pressed(&"down"):

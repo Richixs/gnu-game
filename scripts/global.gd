@@ -8,6 +8,7 @@ var game_active: bool = false
 var is_restarting: bool = false 
 var touch_action_counts := {&"up": 0, &"down": 0}
 var touch_action_just_pressed := {&"up": false, &"down": false}
+var last_point_milestone: int = 0
 
 signal score_updated(new_score)
 @warning_ignore("unused_signal")
@@ -17,12 +18,20 @@ func _physics_process(delta: float) -> void:
 	if game_active:
 		if current_speed < max_speed:
 			current_speed += speed_multiplier * delta
-		actual_score += current_speed * delta * 0.1 
+		actual_score += current_speed * delta * 0.05 
+		
+		@warning_ignore("integer_division")
+		var current_milestone = int(actual_score) / 100
+		if current_milestone > last_point_milestone:
+			last_point_milestone = current_milestone
+			AudioManager.play_point()
+		
 		score_updated.emit(int(actual_score))
 
 func reset_game():
 	current_speed = 200.0
 	actual_score = 0.0
+	last_point_milestone = 0
 	game_active = true
 	clear_touch_actions()
 	get_tree().paused = false
