@@ -69,6 +69,11 @@ func show_game_over():
 func _on_btn_play_again_pressed():
 	_on_btn_play_pressed()
 
+func _on_btn_main_menu_pressed():
+	Global.game_active = false
+	get_tree().paused = true
+	show_screen(main_menu)
+
 func _on_btn_register_pressed():
 	show_screen(register_menu)
 	initials_input.clear()

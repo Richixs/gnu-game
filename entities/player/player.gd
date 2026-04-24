@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @export var min_jump_velocity: float = -400.0
 @export var max_jump_velocity: float = -450.0
+@export var standing_hitbox_inset: Vector2 = Vector2(3, 2)
+@export var ducking_hitbox_inset: Vector2 = Vector2(6, 2)
 
 @onready var sprite = $Sprite
 @onready var collision_shape = $CollisionShape2D
@@ -52,13 +54,27 @@ func _set_collision_state(duck: bool):
 	if not skin or not collision_shape.shape is RectangleShape2D:
 		return
 
+	var target_size: Vector2
+	var target_offset: Vector2
+	var hitbox_inset: Vector2
+
 	if is_ducking:
-		collision_shape.shape.size = skin.ducking_size
-		collision_shape.position = skin.ducking_offset
+		target_size = skin.ducking_size
+		target_offset = skin.ducking_offset
+		hitbox_inset = ducking_hitbox_inset
 		sprite.position = skin.ducking_offset
 		sprite.play("duck")
 	else:
-		collision_shape.shape.size = skin.standing_size
-		collision_shape.position = skin.standing_offset
+		target_size = skin.standing_size
+		target_offset = skin.standing_offset
+		hitbox_inset = standing_hitbox_inset
 		sprite.position = skin.standing_offset
 		sprite.play("run")
+
+	var new_size := Vector2(
+		max(2.0, target_size.x - hitbox_inset.x * 2.0),
+		max(2.0, target_size.y - hitbox_inset.y * 2.0)
+	)
+
+	collision_shape.shape.size = new_size
+	collision_shape.position = target_offset + Vector2(0, hitbox_inset.y)
