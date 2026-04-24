@@ -27,7 +27,6 @@ size = Vector2(320, 13)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2092632211]
 script = ExtResource("2_6rhwe")
-scroll_speed = 200.0
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1693570133]
 motion_scale = Vector2(0, 0)

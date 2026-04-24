@@ -1,12 +1,11 @@
 extends Area2D
 
-@export var speed: float = 250.0 
-
 func _ready() -> void:
-	$AnimatedSprite2D.play("default")
+	if $AnimatedSprite2D:
+		$AnimatedSprite2D.play("default")
 
 func _physics_process(delta: float) -> void:
-	position.x -= speed * delta
+	position.x -= Global.current_speed * delta
 	
 	if position.x < -15:
 		queue_free()
