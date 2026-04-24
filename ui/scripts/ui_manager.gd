@@ -71,6 +71,7 @@ func _on_btn_play_again_pressed():
 
 func _on_btn_main_menu_pressed():
 	Global.game_active = false
+	Global.clear_touch_actions()
 	get_tree().paused = true
 	show_screen(main_menu)
 

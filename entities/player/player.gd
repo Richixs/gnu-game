@@ -25,7 +25,7 @@ func _apply_skin():
 
 func _physics_process(delta):
 	if not is_on_floor():
-		if Input.is_action_pressed("down"):
+		if Global.is_action_pressed(&"down"):
 			velocity.y += (gravity * fast_fall_multiplier) * delta
 		else:
 			velocity.y += gravity * delta
@@ -34,11 +34,11 @@ func _physics_process(delta):
 			sprite.play("idle")
 
 
-	if Input.is_action_just_pressed("up") and is_on_floor() and not is_ducking:
+	if Global.is_action_just_pressed(&"up") and is_on_floor() and not is_ducking:
 		velocity.y = randf_range(max_jump_velocity, min_jump_velocity)
 
 	if is_on_floor():
-		if Input.is_action_pressed("down"):
+		if Global.is_action_pressed(&"down"):
 			if not is_ducking:
 				_set_collision_state(true)
 		elif is_ducking:
