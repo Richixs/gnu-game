@@ -98,5 +98,7 @@ anchor_mode = 0
 [node name="ObstacleSpawner" parent="." unique_id=1882673231 instance=ExtResource("9_dlib7")]
 position = Vector2(330, 0)
 ground_obstacles = Array[PackedScene]([ExtResource("10_vvn61"), ExtResource("11_odyyq"), ExtResource("12_8x81d")])
+min_spawn_time = 1.0
+max_spawn_time = 2.0
 ground_y = 143.0
 air_y = 100.0
