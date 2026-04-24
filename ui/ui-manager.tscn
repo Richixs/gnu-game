@@ -182,6 +182,14 @@ custom_minimum_size = Vector2(72, 22)
 layout_mode = 2
 text = "ALL"
 
+[node name="ScoreListBackground" type="ColorRect" parent="ScoreboardMenu" unique_id=1842057716]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 39.0
+offset_right = 306.0
+offset_bottom = 141.0
+color = Color(0.2, 0.2, 0.2, 0.42)
+
 [node name="ScrollContainer" type="ScrollContainer" parent="ScoreboardMenu" unique_id=178442742]
 layout_mode = 0
 offset_left = 18.0
