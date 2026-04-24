@@ -1,0 +1,145 @@
+[gd_scene format=3 uid="uid://0ufiofvw4fbf"]
+
+[ext_resource type="Script" uid="uid://bvdd457ppf7sb" path="res://ui/scripts/ui_manager.gd" id="1_xwiw3"]
+
+[node name="UIManager" type="CanvasLayer" unique_id=1976602732]
+process_mode = 3
+script = ExtResource("1_xwiw3")
+
+[node name="HUD" type="Control" parent="." unique_id=21814897]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreLabel" type="Label" parent="HUD" unique_id=237407295]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 60.0
+offset_right = 90.0
+offset_bottom = 83.0
+horizontal_alignment = 2
+
+[node name="MainMenu" type="ColorRect" parent="." unique_id=2126623908]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.3882353, 0, 0.8745098, 0.07058824)
+
+[node name="Title" type="Label" parent="MainMenu" unique_id=1525391175]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GNU RUNNER"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=154418457]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="BtnPlay" type="Button" parent="MainMenu/VBoxContainer" unique_id=1839988240]
+layout_mode = 2
+
+[node name="BtnControls" type="Button" parent="MainMenu/VBoxContainer" unique_id=825533366]
+layout_mode = 2
+
+[node name="BtnScoreboard" type="Button" parent="MainMenu/VBoxContainer" unique_id=493731045]
+layout_mode = 2
+
+[node name="GameOverMenu" type="ColorRect" parent="." unique_id=1678799279]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.3882353, 0, 0.8745098, 0.07058824)
+
+[node name="Title" type="Label" parent="GameOverMenu" unique_id=1219159025]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverMenu" unique_id=1290184440]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnRegister" type="Button" parent="GameOverMenu/VBoxContainer" unique_id=850109684]
+layout_mode = 2
+
+[node name="BtnPlayAgain" type="Button" parent="GameOverMenu/VBoxContainer" unique_id=1609603700]
+layout_mode = 2
+
+[node name="RegisterMenu" type="ColorRect" parent="." unique_id=767392034]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.3882353, 0, 0.8745098, 0.07058824)
+
+[node name="InitialsInput" type="LineEdit" parent="RegisterMenu" unique_id=589020130]
+layout_mode = 0
+offset_right = 68.5
+offset_bottom = 31.0
+alignment = 1
+max_length = 3
+
+[node name="BtnSave" type="Button" parent="RegisterMenu" unique_id=466374228]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ScoreboardMenu" type="ColorRect" parent="." unique_id=743023113]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.3882353, 0, 0.8745098, 0.07058824)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScoreboardMenu" unique_id=1492389564]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BtnDay24" type="Button" parent="ScoreboardMenu/HBoxContainer" unique_id=1634701836]
+layout_mode = 2
+
+[node name="BtnDay25" type="Button" parent="ScoreboardMenu/HBoxContainer" unique_id=679363973]
+layout_mode = 2
+
+[node name="BtnAll" type="Button" parent="ScoreboardMenu/HBoxContainer" unique_id=1601079353]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScoreboardMenu" unique_id=178442742]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ScoreList" type="VBoxContainer" parent="ScoreboardMenu/ScrollContainer" unique_id=1923207062]
+layout_mode = 2
+
+[node name="BtnClose" type="Button" parent="ScoreboardMenu" unique_id=245772080]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="ControlsMenu" type="ColorRect" parent="." unique_id=856727451]
+offset_right = 320.0
+offset_bottom = 180.0
+color = Color(0.3882353, 0, 0.8745098, 0.07058824)
+
+[node name="BtnCloseControls" type="Button" parent="ControlsMenu" unique_id=837452218]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Info" type="Label" parent="ControlsMenu" unique_id=358913253]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "FLECHA ARRIBA: Saltar\\nFLECHA ABAJO: Fast Fall/Agacharse"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/BtnPlay" to="." method="_on_btn_play_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/BtnControls" to="." method="_on_btn_controls_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/BtnScoreboard" to="." method="_on_btn_scoreboard_pressed"]
+[connection signal="pressed" from="GameOverMenu/VBoxContainer/BtnRegister" to="." method="_on_btn_register_pressed"]
+[connection signal="pressed" from="GameOverMenu/VBoxContainer/BtnPlayAgain" to="." method="_on_btn_play_again_pressed"]
+[connection signal="pressed" from="RegisterMenu/BtnSave" to="." method="_on_btn_save_pressed"]
+[connection signal="pressed" from="ScoreboardMenu/BtnClose" to="." method="_on_btn_close_pressed"]
+[connection signal="pressed" from="ControlsMenu/BtnCloseControls" to="." method="_on_btn_close_controls_pressed"]
