@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var hud = $HUD
 @onready var score_label = $HUD/ScoreLabel
+@onready var game_over_score_label = $GameOverMenu/ScoreLabel
 @onready var main_menu = $MainMenu
 @onready var game_over_menu = $GameOverMenu
 @onready var register_menu = $RegisterMenu
@@ -33,7 +34,9 @@ func _ready():
 		show_screen(main_menu)
 
 func _on_score_updated(new_score: int):
-	score_label.text = "SCORE: %05d" % new_score
+	var score_text = "SCORE: %05d" % new_score
+	score_label.text = score_text
+	game_over_score_label.text = score_text
 
 func show_screen(screen_to_show: Control):
 	main_menu.hide()
@@ -60,6 +63,7 @@ func _on_btn_scoreboard_pressed():
 	show_screen(scoreboard_menu)
 
 func show_game_over():
+	game_over_score_label.text = "SCORE: %05d" % int(Global.actual_score)
 	show_screen(game_over_menu)
 
 func _on_btn_play_again_pressed():
