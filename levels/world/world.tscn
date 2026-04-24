@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://baiqxij7icjlu"]
 
 [ext_resource type="PackedScene" uid="uid://cp2dkdyv3g3a1" path="res://entities/player/player.tscn" id="1_ng6r8"]
+[ext_resource type="Script" path="res://levels/world/world.gd" id="1_worldgd"]
 [ext_resource type="Shader" uid="uid://x0quhk0hc2vk" path="res://levels/world/rim_light.gdshader" id="2_6qp4l"]
 [ext_resource type="Script" uid="uid://dc0sgpsxhqx42" path="res://levels/world/scripts/track/scrolling_background.gd" id="2_6rhwe"]
 [ext_resource type="Texture2D" uid="uid://3io7eb8155b5" path="res://levels/world/sprites/background/city_half.png" id="2_b8p08"]
@@ -24,6 +25,7 @@ shader_parameter/global_opacity = 0.800000038
 size = Vector2(320, 13)
 
 [node name="World" type="Node2D" unique_id=9187508]
+script = ExtResource("1_worldgd")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2092632211]
 script = ExtResource("2_6rhwe")
